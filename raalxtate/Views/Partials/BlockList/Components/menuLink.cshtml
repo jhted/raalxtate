@@ -1,0 +1,12 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<Umbraco.Core.Models.Blocks.BlockListItem>
+
+@using ContentModels = Umbraco.Web.PublishedModels;
+
+@{
+    var content = (ContentModels.MenuLink)Model.Content;
+    var settings = (ContentModels.MenuLink)Model.Settings;
+}
+
+
+
+<li><a href="@content.LInk.Url">@content.Title</a></li>
