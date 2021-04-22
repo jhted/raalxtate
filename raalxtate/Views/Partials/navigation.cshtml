@@ -45,11 +45,11 @@
                         <ul>
                             @*
                                 
+                            *@
                             @if (settings.HasProperty("navigationMenu") && settings.HasValue("navigationMenu"))
                             {
                                 @Html.GetBlockListHtml(settings, "navigationMenu")
                             }
-                            *@
                             <li class="active"><a href="./index.html">Home</a></li>
                             <li>
                                 <a href="#">Properties</a>
