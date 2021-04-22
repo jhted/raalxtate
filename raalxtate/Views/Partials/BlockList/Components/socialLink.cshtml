@@ -1,0 +1,27 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<Umbraco.Core.Models.Blocks.BlockListItem>
+
+@using ContentModels = Umbraco.Web.PublishedModels;
+
+@{
+
+    var content = (ContentModels.SocialLink)Model.Content;
+    var settings = (ContentModels.SocialLink)Model.Settings;
+    @*
+        var icon = "";
+        switch (icon)
+        {
+            case "x":
+                icon = "";
+                break;
+            case "y":
+                icon = "";
+                break;
+            default:
+                icon = "";
+                break;
+        }
+    *@
+}
+
+
+<a href="@content.Link.Url"><i class="fa fa-@content.Title"></i></a>

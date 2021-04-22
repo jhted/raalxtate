@@ -303,6 +303,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Data\Models\*.generated.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -333,6 +334,8 @@
     <Content Include="Views\Home.cshtml" />
     <Content Include="Views\Partials\navigation.cshtml" />
     <Content Include="Views\Partials\header.cshtml" />
+    <Content Include="Views\Partials\BlockList\Components\menuLink.cshtml" />
+    <Content Include="Views\Partials\BlockList\Components\socialLink.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
