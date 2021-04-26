@@ -1,0 +1,42 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@{
+    Layout = "Master.cshtml";
+    var imageUrl = Model.Value<IPublishedContent>("headerImage", fallback: Fallback.ToAncestors).Url();
+    var agent = Model.Value<Agent>("SelectAgent");
+}
+
+@* the fun starts here *@
+
+
+<!-- Blog Hero Section Begin -->
+<section class="blog-hero-section set-bg" data-setbg="@imageUrl">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="bh-text">
+                    <h4>@Model.Value("pageTitle")</h4>
+                    <ul>
+                        <li>by <span>@agent.FullNames</span></li>
+                        <li>Seb 24, 2019</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Blog Hero Section End -->
+
+
+
+
+@if (Model.HasProperty("pageContentGrid") && Model.HasValue("pageContentGrid"))
+{
+    <!-- Content Section Begin -->
+    <section class="about-section spad">
+        <div class="container">
+            @Html.GetGridHtml(Model, "pageContentGrid")
+        </div>
+    </section>
+    <!-- Content Section End -->
+}
+

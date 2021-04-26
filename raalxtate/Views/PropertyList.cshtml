@@ -1,0 +1,79 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+
+@*
+    
+*@
+@using Raalxtate.Helpers
+
+
+@{
+    Layout = "Master.cshtml";
+    @*
+        
+    var bloglist = Model.Root().Descendants<PropertyList>().FirstOrDefault();
+    *@
+    var blogs = Model.Descendants<PropertyDetails>().Where(x => x.IsVisible());
+
+    int blogSize = Model.HasValue("blogTotal") ? Model.Value<int>("blogTotal") : 4;
+    var blogTotal = blogs != null && blogs.Any() ? blogs.Count() : 0;
+
+    var pageNumber = QueryStringHelper.GetIntFromQueryString(Request, "page", 1);
+    var totalPages = Math.Ceiling((double)blogTotal / (double)blogSize);
+
+    var blogList = blogs.Skip((pageNumber - 1) * blogSize).Take(blogSize);
+
+    var pageUrl = Model.Url;
+}
+
+@* the fun starts here *@
+
+
+@Html.Partial("~/Views/Partials/header.cshtml")
+
+
+@if (Model.HasProperty("pageContentGrid") && Model.HasValue("pageContentGrid"))
+{
+    <!-- Content Section Begin -->
+    <section class="about-section spad">
+        <div class="container">
+            @Html.GetGridHtml(Model, "pageContentGrid")
+        </div>
+    </section>
+    <!-- Content Section End -->
+}
+
+
+@Html.Partial("~/Views/Partials/searchSection.cshtml")
+
+<!-- Property Section Begin -->
+<section class="property-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <h4>PROPERTIES</h4>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @*
+                
+            *@
+            @foreach (var property in blogList)
+            {
+                @Html.Partial("~/Views/Partials/propertyBox.cshtml", property)
+            }
+            <div class="col-lg-12">
+                <div class="blog-pagination property-pagination ">
+                    <a href="#">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#" class="icon"><span class="arrow_right"></span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Property Section End -->
+
+

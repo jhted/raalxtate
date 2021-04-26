@@ -1,0 +1,61 @@
+﻿@inherits UmbracoViewPage<PropertyDetails>
+@*
+    @model IEnumerable<PublishedElementModel>
+        @inherits Umbraco.Web.Mvc.UmbracoViewPage
+                    <PropertyDetails>
+
+        @model IEnumerable<PublishedElementModel>
+    @model IPublishedContent
+*@
+
+
+@{
+    // var Agent = Model.Value<Agent>("selectAgent");
+    // var blogList = Model;
+    // var image = "";
+    // var imageUrl = Model.Value<IPublishedContent>("headerImage", fallback: Fallback.ToAncestors).Url();
+    var image = Model.HasValue("headerImage") ? Model.Value<IPublishedContent>("headerImage").Url : "";
+    var isSale = Model.HasValue("contractType") && Model.Value("contractType") != "sale" ? true : false;
+    var agent = Model.Value<Agent>("SelectAgent");
+    var agentimage = agent.HasValue("image") ? agent.Value<IPublishedContent>("image").Url : "";
+}
+
+@*
+
+    <strong>@Model.Name</strong>
+
+*@
+
+<div class="col-lg-4 col-md-6">
+    <div class="property-item">
+        <div class="pi-pic set-bg" data-setbg="@image">
+            <div class="label @(isSale ? "c-red" :"")">For @(isSale ? "Sale" : "Rent")</div>
+        </div>
+        <div class="pi-text">
+            <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+            <div class="pt-price">R @Model.Price<span> @(Model.ContractType != "Sale" ? "/month" :"")</span></div>
+            <h5><a href="@Model.Url"> @Model.Name</a></h5>
+            <p><span class="icon_pin_alt"></span>  @Model.Value("province"), @Model.Value("locationType")</p>
+            <ul>
+                <li><i class="fa fa-object-group"></i> @Model.Value("homeArea")</li>
+                <li><i class="fa fa-bathtub"></i> @Model.Value("bathrooms")</li>
+                <li><i class="fa fa-bed"></i> @Model.Value("bedrooms")</li>
+                <li><i class="fa fa-automobile"></i> @Model.Value("garages")</li>
+            </ul>
+            <div class="pi-agent">
+                <div class="pa-item">
+                    <div class="pa-info">
+                        <img src="@agentimage" alt="">
+                        <h6>@agent.FullNames</h6>
+                    </div>
+                    <div class="pa-text">
+                        @agent.MemberPhone
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

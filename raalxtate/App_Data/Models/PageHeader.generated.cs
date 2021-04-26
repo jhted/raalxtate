@@ -23,11 +23,11 @@ namespace Umbraco.Web.PublishedModels
 	/// <summary>Page Header</summary>
 	public partial interface IPageHeader : IPublishedContent
 	{
-		/// <summary>Page Image</summary>
+		/// <summary>Image</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
-		global::Umbraco.Core.Models.PublishedContent.IPublishedContent PageImage { get; }
+		global::Umbraco.Core.Models.PublishedContent.IPublishedContent HeaderImage { get; }
 
-		/// <summary>Page Title</summary>
+		/// <summary>Title</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
 		string PageTitle { get; }
 	}
@@ -58,24 +58,24 @@ namespace Umbraco.Web.PublishedModels
 		// properties
 
 		///<summary>
-		/// Page Image
+		/// Image
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
-		[ImplementPropertyType("pageImage")]
-		public global::Umbraco.Core.Models.PublishedContent.IPublishedContent PageImage => GetPageImage(this);
+		[ImplementPropertyType("headerImage")]
+		public global::Umbraco.Core.Models.PublishedContent.IPublishedContent HeaderImage => GetHeaderImage(this);
 
-		/// <summary>Static getter for Page Image</summary>
+		/// <summary>Static getter for Image</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
-		public static global::Umbraco.Core.Models.PublishedContent.IPublishedContent GetPageImage(IPageHeader that) => that.Value<global::Umbraco.Core.Models.PublishedContent.IPublishedContent>("pageImage");
+		public static global::Umbraco.Core.Models.PublishedContent.IPublishedContent GetHeaderImage(IPageHeader that) => that.Value<global::Umbraco.Core.Models.PublishedContent.IPublishedContent>("headerImage");
 
 		///<summary>
-		/// Page Title
+		/// Title
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
 		[ImplementPropertyType("pageTitle")]
 		public string PageTitle => GetPageTitle(this);
 
-		/// <summary>Static getter for Page Title</summary>
+		/// <summary>Static getter for Title</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
 		public static string GetPageTitle(IPageHeader that) => that.Value<string>("pageTitle");
 	}

@@ -52,14 +52,14 @@ namespace Umbraco.Web.PublishedModels
 		public global::Newtonsoft.Json.Linq.JToken PageContentGrid => global::Umbraco.Web.PublishedModels.PageContent.GetPageContentGrid(this);
 
 		///<summary>
-		/// Page Image
+		/// Image
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
-		[ImplementPropertyType("pageImage")]
-		public global::Umbraco.Core.Models.PublishedContent.IPublishedContent PageImage => global::Umbraco.Web.PublishedModels.PageHeader.GetPageImage(this);
+		[ImplementPropertyType("headerImage")]
+		public global::Umbraco.Core.Models.PublishedContent.IPublishedContent HeaderImage => global::Umbraco.Web.PublishedModels.PageHeader.GetHeaderImage(this);
 
 		///<summary>
-		/// Page Title
+		/// Title
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
 		[ImplementPropertyType("pageTitle")]

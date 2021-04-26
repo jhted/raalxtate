@@ -304,6 +304,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Data\Models\*.generated.cs" />
+    <Compile Include="helper\QueryStringHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -336,6 +337,15 @@
     <Content Include="Views\Partials\header.cshtml" />
     <Content Include="Views\Partials\BlockList\Components\menuLink.cshtml" />
     <Content Include="Views\Partials\BlockList\Components\socialLink.cshtml" />
+    <Content Include="Views\PropertyList.cshtml" />
+    <Content Include="Views\PropertyDetails.cshtml" />
+    <Content Include="Views\Content.cshtml" />
+    <Content Include="Views\Partials\searchSection.cshtml" />
+    <Content Include="Views\Partials\propertySection.cshtml" />
+    <Content Include="Views\Partials\propertyBox.cshtml" />
+    <Content Include="Views\Partials\BlockList\Components\carouselProperty.cshtml" />
+    <Content Include="Views\Partials\BlockList\Components\carouselImageOnly.cshtml" />
+    <Content Include="Views\Partials\BlockList\Components\carouselHero.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

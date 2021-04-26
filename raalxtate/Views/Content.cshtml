@@ -1,0 +1,23 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@{
+	Layout = "Master.cshtml";
+}
+
+@* the fun starts here *@
+
+
+
+
+@Html.Partial("~/Views/Partials/header.cshtml")
+
+
+@if (Model.HasProperty("pageContentGrid") && Model.HasValue("pageContentGrid"))
+{
+    <!-- Content Section Begin -->
+    <section class="about-section spad">
+        <div class="container">
+            @Html.GetGridHtml(Model, "pageContentGrid")
+        </div>
+    </section>
+    <!-- Content Section End -->
+}

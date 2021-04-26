@@ -21,7 +21,7 @@ namespace Umbraco.Web.PublishedModels
 {
 	/// <summary>Property Details</summary>
 	[PublishedModel("propertyDetails")]
-	public partial class PropertyDetails : PublishedContentModel, ICarousel, IContactInfromation, IPageContent, IPageHeader, ISEO
+	public partial class PropertyDetails : PublishedContentModel, ICarousel, IContactInfromation, IPageContent, IPageHeader, IPropertyOptions, ISelectAnAgent, ISEO
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -73,18 +73,123 @@ namespace Umbraco.Web.PublishedModels
 		public global::Newtonsoft.Json.Linq.JToken PageContentGrid => global::Umbraco.Web.PublishedModels.PageContent.GetPageContentGrid(this);
 
 		///<summary>
-		/// Page Image
+		/// Image
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
-		[ImplementPropertyType("pageImage")]
-		public global::Umbraco.Core.Models.PublishedContent.IPublishedContent PageImage => global::Umbraco.Web.PublishedModels.PageHeader.GetPageImage(this);
+		[ImplementPropertyType("headerImage")]
+		public global::Umbraco.Core.Models.PublishedContent.IPublishedContent HeaderImage => global::Umbraco.Web.PublishedModels.PageHeader.GetHeaderImage(this);
 
 		///<summary>
-		/// Page Title
+		/// Title
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
 		[ImplementPropertyType("pageTitle")]
 		public string PageTitle => global::Umbraco.Web.PublishedModels.PageHeader.GetPageTitle(this);
+
+		///<summary>
+		/// Amenity Items
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
+		[ImplementPropertyType("amenityItems")]
+		public global::System.Collections.Generic.IEnumerable<global::Umbraco.Web.PublishedModels.AmenityIterm> AmenityItems => global::Umbraco.Web.PublishedModels.PropertyOptions.GetAmenityItems(this);
+
+		///<summary>
+		/// Bathrooms
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
+		[ImplementPropertyType("bathrooms")]
+		public string Bathrooms => global::Umbraco.Web.PublishedModels.PropertyOptions.GetBathrooms(this);
+
+		///<summary>
+		/// Bedrooms
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
+		[ImplementPropertyType("bedrooms")]
+		public string Bedrooms => global::Umbraco.Web.PublishedModels.PropertyOptions.GetBedrooms(this);
+
+		///<summary>
+		/// Contract type
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
+		[ImplementPropertyType("contractType")]
+		public string ContractType => global::Umbraco.Web.PublishedModels.PropertyOptions.GetContractType(this);
+
+		///<summary>
+		/// Garages
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
+		[ImplementPropertyType("garages")]
+		public string Garages => global::Umbraco.Web.PublishedModels.PropertyOptions.GetGarages(this);
+
+		///<summary>
+		/// Google Map Location
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
+		[ImplementPropertyType("googleMapLocation")]
+		public string GoogleMapLocation => global::Umbraco.Web.PublishedModels.PropertyOptions.GetGoogleMapLocation(this);
+
+		///<summary>
+		/// Home Area
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
+		[ImplementPropertyType("homeArea")]
+		public int HomeArea => global::Umbraco.Web.PublishedModels.PropertyOptions.GetHomeArea(this);
+
+		///<summary>
+		/// Location Type
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
+		[ImplementPropertyType("locationType")]
+		public string LocationType => global::Umbraco.Web.PublishedModels.PropertyOptions.GetLocationType(this);
+
+		///<summary>
+		/// Parking lots
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
+		[ImplementPropertyType("parkingLots")]
+		public string ParkingLots => global::Umbraco.Web.PublishedModels.PropertyOptions.GetParkingLots(this);
+
+		///<summary>
+		/// Price
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
+		[ImplementPropertyType("price")]
+		public int Price => global::Umbraco.Web.PublishedModels.PropertyOptions.GetPrice(this);
+
+		///<summary>
+		/// Property Type
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
+		[ImplementPropertyType("propertyType")]
+		public string PropertyType => global::Umbraco.Web.PublishedModels.PropertyOptions.GetPropertyType(this);
+
+		///<summary>
+		/// Province
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
+		[ImplementPropertyType("province")]
+		public string Province => global::Umbraco.Web.PublishedModels.PropertyOptions.GetProvince(this);
+
+		///<summary>
+		/// Rooms
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
+		[ImplementPropertyType("rooms")]
+		public string Rooms => global::Umbraco.Web.PublishedModels.PropertyOptions.GetRooms(this);
+
+		///<summary>
+		/// Year Built
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
+		[ImplementPropertyType("yearBuilt")]
+		public int YearBuilt => global::Umbraco.Web.PublishedModels.PropertyOptions.GetYearBuilt(this);
+
+		///<summary>
+		/// Select Agent
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
+		[ImplementPropertyType("selectAgent")]
+		public global::Umbraco.Core.Models.PublishedContent.IPublishedContent SelectAgent => global::Umbraco.Web.PublishedModels.SelectAnAgent.GetSelectAgent(this);
 
 		///<summary>
 		/// Seo Title

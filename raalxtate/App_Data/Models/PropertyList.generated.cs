@@ -21,7 +21,7 @@ namespace Umbraco.Web.PublishedModels
 {
 	/// <summary>Property List</summary>
 	[PublishedModel("propertyList")]
-	public partial class PropertyList : PublishedContentModel, IPageContent, IPageHeader, ISEO
+	public partial class PropertyList : PublishedContentModel, IPageHeader, IPropertiesListOptions, ISEO
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -45,25 +45,25 @@ namespace Umbraco.Web.PublishedModels
 		// properties
 
 		///<summary>
-		/// Content Grid
+		/// Image
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
-		[ImplementPropertyType("pageContentGrid")]
-		public global::Newtonsoft.Json.Linq.JToken PageContentGrid => global::Umbraco.Web.PublishedModels.PageContent.GetPageContentGrid(this);
+		[ImplementPropertyType("headerImage")]
+		public global::Umbraco.Core.Models.PublishedContent.IPublishedContent HeaderImage => global::Umbraco.Web.PublishedModels.PageHeader.GetHeaderImage(this);
 
 		///<summary>
-		/// Page Image
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
-		[ImplementPropertyType("pageImage")]
-		public global::Umbraco.Core.Models.PublishedContent.IPublishedContent PageImage => global::Umbraco.Web.PublishedModels.PageHeader.GetPageImage(this);
-
-		///<summary>
-		/// Page Title
+		/// Title
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
 		[ImplementPropertyType("pageTitle")]
 		public string PageTitle => global::Umbraco.Web.PublishedModels.PageHeader.GetPageTitle(this);
+
+		///<summary>
+		/// Amount: Amount of properties to show per page
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
+		[ImplementPropertyType("amountPerPage")]
+		public int AmountPerPage => global::Umbraco.Web.PublishedModels.PropertiesListOptions.GetAmountPerPage(this);
 
 		///<summary>
 		/// Seo Title

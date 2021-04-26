@@ -45,11 +45,25 @@ namespace Umbraco.Web.PublishedModels
 		// properties
 
 		///<summary>
+		/// Image
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
+		[ImplementPropertyType("image")]
+		public global::Umbraco.Core.Models.PublishedContent.IPublishedContent Image => this.Value<global::Umbraco.Core.Models.PublishedContent.IPublishedContent>("image");
+
+		///<summary>
 		/// Property
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
 		[ImplementPropertyType("property")]
 		public global::Umbraco.Core.Models.PublishedContent.IPublishedContent Property => this.Value<global::Umbraco.Core.Models.PublishedContent.IPublishedContent>("property");
+
+		///<summary>
+		/// tesp property
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
+		[ImplementPropertyType("tespProperty")]
+		public global::Umbraco.Core.Models.PublishedContent.IPublishedContent TespProperty => this.Value<global::Umbraco.Core.Models.PublishedContent.IPublishedContent>("tespProperty");
 
 		///<summary>
 		/// Title
