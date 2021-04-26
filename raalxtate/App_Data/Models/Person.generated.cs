@@ -21,7 +21,7 @@ namespace Umbraco.Web.PublishedModels
 {
 	/// <summary>Person</summary>
 	[PublishedModel("person")]
-	public partial class Person : PublishedContentModel, IPageContent, IPageHeader, ISEO
+	public partial class Person : PublishedContentModel, IPageContent, IPageHeader, ISelectAnAgent, ISEO
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -64,6 +64,13 @@ namespace Umbraco.Web.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
 		[ImplementPropertyType("pageTitle")]
 		public string PageTitle => global::Umbraco.Web.PublishedModels.PageHeader.GetPageTitle(this);
+
+		///<summary>
+		/// Select Agent
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
+		[ImplementPropertyType("selectAgent")]
+		public global::Umbraco.Core.Models.PublishedContent.IPublishedContent SelectAgent => global::Umbraco.Web.PublishedModels.SelectAnAgent.GetSelectAgent(this);
 
 		///<summary>
 		/// Seo Title

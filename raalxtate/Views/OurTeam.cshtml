@@ -1,0 +1,72 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@{
+    Layout = "Master.cshtml";
+
+    var root = Model.AncestorOrSelf<OurTeam>();
+    var agents = root.Children<Person>().Where(x => x.IsVisible());
+
+    var pageUrl = Model.Url;
+}
+
+@* the fun starts here *@
+
+
+@Html.Partial("~/Views/Partials/header.cshtml")
+
+
+
+@if (Model.HasProperty("pageContentGrid") && Model.HasValue("pageContentGrid"))
+{
+    <!-- Content Section Begin -->
+    <section class="about-section spad">
+        <div class="container">
+            @Html.GetGridHtml(Model, "pageContentGrid")
+        </div>
+    </section>
+    <!-- Content Section End -->
+}
+
+<!-- Agent Section Begin -->
+<section class="agent-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="agent-search-form">
+                    <form action="#">
+                        <input type="text" placeholder="Find agent">
+                        <button type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="as-slider owl-carousel">
+            <div class="row">
+
+                @foreach (var agent in agents)
+                {
+                    var agentData = agent.Value<Agent>("selectAgent");
+                    var agantImage = agentData.HasValue("image") ? agentData.Value<IPublishedContent>("image").Url : "";
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="as-item">
+                            <div class="as-pic">
+                                <img src="@agantImage" alt="">
+                            </div>
+                            <div class="as-text">
+                                <div class="at-title">
+                                    <h6>@agentData.Value("fullNames")</h6>
+                                </div>
+                                <ul>
+                                    <li>Email <span>@agentData.Value("memberEmail")</span></li>
+                                    <li>Phone <span>@agentData.Value("memberPhone")</span></li>
+                                </ul>
+                                <a href="@agent.Url" class="primary-btn">View profile</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Agent Section End -->

@@ -40,15 +40,7 @@
 
     var blogs = Model.Descendants<PropertyDetails>().Where(x => x.IsVisible());
 
-    int blogSize = Model.HasValue("blogTotal") ? Model.Value<int>("blogTotal") : 6;
-    var blogTotal = blogs != null && blogs.Any() ? blogs.Count() : 0;
-
-    var pageNumber = QueryStringHelper.GetIntFromQueryString(Request, "page", 1);
-    var totalPages = Math.Ceiling((double)blogTotal / (double)blogSize);
-
-    var blogList = blogs.Skip((pageNumber - 1) * blogSize).Take(blogSize);
-
-    var pageUrl = Model.Url;
+    var blogList = blogs.Take(6);
 
     <!-- Property Section Begin -->
     <section class="property-section spad">
@@ -68,15 +60,6 @@
                 {
                     @Html.Partial("~/Views/Partials/propertyBox.cshtml", property)
                 }
-                <div class="col-lg-12">
-                    <div class="blog-pagination property-pagination ">
-
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#" class="icon"><span class="arrow_right"></span></a>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
