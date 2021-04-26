@@ -1,0 +1,187 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+
+
+
+@using Raalxtate.Helpers
+
+
+@{
+    Layout = "Master.cshtml";
+
+
+    var blogs = Model.Descendants<Article>().Where(x => x.IsVisible());
+
+    int blogSize = Model.HasValue("blogTotal") ? Model.Value<int>("blogTotal") : 9;
+    var blogTotal = blogs != null && blogs.Any() ? blogs.Count() : 0;
+
+    var pageNumber = QueryStringHelper.GetIntFromQueryString(Request, "page", 1);
+    var totalPages = Math.Ceiling((double)blogTotal / (double)blogSize);
+
+    var blogList = blogs.Skip((pageNumber - 1) * blogSize).Take(blogSize);
+
+    var pageUrl = Model.Url;
+    var isFirst = 0;
+}
+
+@* the fun starts here *@
+
+
+
+@Html.Partial("~/Views/Partials/header.cshtml")
+
+
+
+
+<!-- Blog Section Begin -->
+<section class="blog-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="blog-item-list">
+
+                    @foreach (var blog in blogList)
+                    {
+                        var blogImage = blog.HasValue("headerImage") ? blog.Value<IPublishedContent>("headerImage").Url : "https://localhost:44385/media/3g4k0bd0/blog-5.jpg";
+
+                        isFirst++;
+
+                        var agent = blog.Value<Agent>("SelectAgent");
+
+
+                        <div class="blog-item @(isFirst < 2 ? "large-blog" : "")">
+                            <div class="bi-pic">
+                                <img src="@blogImage" alt="@blog.Value("pageTitle")" style="max-width: @(isFirst < 2 ? "100%" : "300px");">
+                            </div>
+                            <div class="bi-text">
+                                <h4><a href="@blog.Url">@blog.Value("pageTitle")</a></h4>
+                                <ul>
+                                    <li>by <span>@agent.Value("fullName")</span></li>
+                                    <li>Seb 24, 2019</li>
+                                    <li>12 Comment</li>
+                                </ul>
+                                <p>Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book sentially unchanged...</p>
+                                <a href="#" class="read-more">Read more <span class="arrow_right"></span></a>
+                            </div>
+                        </div>
+
+                    }
+                </div>
+                <div class="blog-pagination property-pagination ">
+                        @if (blogList != null && blogList.Any())
+                        {
+                            if (pageNumber > 1)
+                            {
+                                <a href="@($"{pageUrl}?page={pageNumber - 1 }")" class="icon"><span class="arrow_left"></span></a>
+                            }
+
+                            if ((pageNumber - 1) > 1)
+                            {
+                                <a href="@($"{pageUrl}?page=1")">1</a>
+                            }
+
+                            if ((pageNumber - 1) > 2)
+                            {
+                                <a href="#">...</a>
+                            }
+
+                            if (pageNumber > 1)
+                            {
+                                <a href="@($"{pageUrl}?page={pageNumber - 1 }")">@(pageNumber - 1)</a>
+                            }
+                            <a style="text-decoration: underline;" href="@($"{pageUrl}?page={pageNumber}")">@pageNumber</a>
+                            if (totalPages > 1 && pageNumber < totalPages)
+                            {
+                                <a href="@($"{pageUrl}?page={pageNumber + 1}")">@(pageNumber + 1)</a>
+                            }
+                            if ((pageNumber + 2) < totalPages)
+                            {
+                                <a href="#">...</a>
+                            }
+                            if ((pageNumber + 2) <= totalPages)
+                            {
+                                <a href="@($"{pageUrl}?page={totalPages}")">@totalPages</a>
+                            }
+
+                            if (totalPages > 1 && pageNumber < totalPages)
+                            {
+                                <a href="@($"{pageUrl}?page={pageNumber + 1 }")" class="icon"><span class="arrow_right"></span></a>
+                            }
+                        }
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="blog-sidebar">
+                    <div class="follow-us">
+                        <div class="section-title sidebar-title-b">
+                            <h6>Follow us</h6>
+                        </div>
+                        <div class="fu-links">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+                            <a href="#" class="youtube"><i class="fa fa-youtube-play"></i></a>
+                            <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="feature-post">
+                        <div class="section-title sidebar-title-b">
+                            <h6>Feature posts</h6>
+                        </div>
+                        <div class="recent-post">
+                            <div class="rp-item">
+                                <div class="rp-pic">
+                                    <img src="img/blog/rp-1.jpg" alt="">
+                                </div>
+                                <div class="rp-text">
+                                    <h6><a href="#">Vancouver real estate advisurges conference goers...</a></h6>
+                                    <span>Seb 24, 2019</span>
+                                </div>
+                            </div>
+                            <div class="rp-item">
+                                <div class="rp-pic">
+                                    <img src="img/blog/rp-2.jpg" alt="">
+                                </div>
+                                <div class="rp-text">
+                                    <h6><a href="#">Vancouver real estate advisurges conference goers...</a></h6>
+                                    <span>Seb 24, 2019</span>
+                                </div>
+                            </div>
+                            <div class="rp-item">
+                                <div class="rp-pic">
+                                    <img src="img/blog/rp-3.jpg" alt="">
+                                </div>
+                                <div class="rp-text">
+                                    <h6><a href="#">Vancouver real estate advisurges conference goers...</a></h6>
+                                    <span>Seb 24, 2019</span>
+                                </div>
+                            </div>
+                            <div class="rp-item">
+                                <div class="rp-pic">
+                                    <img src="img/blog/rp-4.jpg" alt="">
+                                </div>
+                                <div class="rp-text">
+                                    <h6><a href="#">Vancouver real estate advisurges conference goers...</a></h6>
+                                    <span>Seb 24, 2019</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="subscribe-form">
+                        <div class="section-title sidebar-title-b">
+                            <h6>Subscribe</h6>
+                        </div>
+                        <p>Consectetur adipiscing elit, sed do eiusmod ut labore.</p>
+                        <form action="#">
+                            <input type="text" placeholder="Email">
+                            <button type="submit" class="site-btn">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Blog Section End -->
+
+
+
+
