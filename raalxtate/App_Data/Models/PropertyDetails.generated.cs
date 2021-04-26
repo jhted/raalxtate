@@ -115,6 +115,13 @@ namespace Umbraco.Web.PublishedModels
 		public string ContractType => global::Umbraco.Web.PublishedModels.PropertyOptions.GetContractType(this);
 
 		///<summary>
+		/// Floor Plan
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
+		[ImplementPropertyType("floorPlan")]
+		public global::Umbraco.Core.Models.PublishedContent.IPublishedContent FloorPlan => global::Umbraco.Web.PublishedModels.PropertyOptions.GetFloorPlan(this);
+
+		///<summary>
 		/// Garages
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]

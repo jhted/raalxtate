@@ -1,42 +1,237 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
 @{
     Layout = "Master.cshtml";
-    var imageUrl = Model.Value<IPublishedContent>("headerImage", fallback: Fallback.ToAncestors).Url();
+    var floorPlan = Model.HasValue("floorPlan") ? Model.Value<IPublishedContent>("floorPlan").Url : "";
     var agent = Model.Value<Agent>("SelectAgent");
+    var agentimage = agent.HasValue("image") ? agent.Value<IPublishedContent>("image").Url : "";
 }
 
 @* the fun starts here *@
 
 
-<!-- Blog Hero Section Begin -->
-<section class="blog-hero-section set-bg" data-setbg="@imageUrl">
+@Html.Partial("~/Views/Partials/header.cshtml")
+
+<div style="width:100%;height:50px;"></div>
+
+
+<!-- Property Details Section Begin -->
+<section class="property-details-section">
     <div class="container">
         <div class="row">
-            <div class="col-lg-12">
-                <div class="bh-text">
-                    <h4>@Model.Value("pageTitle")</h4>
-                    <ul>
-                        <li>by <span>@agent.FullNames</span></li>
-                        <li>Seb 24, 2019</li>
-                    </ul>
+            <div class="col-lg-8">
+                <div class="pd-text">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="pd-title">
+                                <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+                                <div class="label " style="background-color: @(Model.Value("contractType") != "Sale" ? "" : "#dc3545") !important;">For @Model.Value("contractType")</div>
+                                <div class="pt-price">R @Model.Value("price") <span>@(Model.Value("contractType") != "Sale" ? "/month" :"")</span></div>
+                                <h3>@Model.Value("pageTitle")</h3>
+                                <p><span class="icon_pin_alt"></span> 3 Middle Winchendon Rd, Rindge, NH 03463</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="pd-social">
+                                <a href="#"><i class="fa fa-mail-forward"></i></a>
+                                <a href="#"><i class="fa fa-send"></i></a>
+                                <a href="#"><i class="fa fa-heart"></i></a>
+                                <a href="#"><i class="fa fa-mail-forward"></i></a>
+                                <a href="#"><i class="fa fa-cloud-download"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-board">
+                        <div class="tab-board">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Overview</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">Description</a>
+                                </li>
+                            </ul><!-- Tab panes -->
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                                    <div class="tab-details">
+                                        <ul class="left-table">
+                                            <li>
+                                                <span class="type-name">Property Type</span>
+                                                <span class="type-value">@Model.Value("propertyType")</span>
+                                            </li>
+                                            <li>
+                                                <span class="type-name">Location Type</span>
+                                                <span class="type-value">@Model.Value("locationType")</span>
+                                            </li>
+                                            <li>
+                                                <span class="type-name">Year Built</span>
+                                                <span class="type-value">@Model.Value("yearBuilt")</span>
+                                            </li>
+                                            <li>
+                                                <span class="type-name">Contract type</span>
+                                                <span class="type-value">@Model.Value("contractType")</span>
+                                            </li>
+                                            <li>
+                                                <span class="type-name">Home Area</span>
+                                                <span class="type-value">@Model.Value("homeArea") sqft</span>
+                                            </li>
+                                        </ul>
+                                        <ul class="right-table">
+                                            <li>
+                                                <span class="type-name">Rooms</span>
+                                                <span class="type-value">@Model.Value("rooms")</span>
+                                            </li>
+                                            <li>
+                                                <span class="type-name">Bedrooms</span>
+                                                <span class="type-value">@Model.Value("bedrooms")</span>
+                                            </li>
+                                            <li>
+                                                <span class="type-name">Bathrooms</span>
+                                                <span class="type-value">@Model.Value("bathrooms")</span>
+                                            </li>
+                                            <li>
+                                                <span class="type-name">Garages</span>
+                                                <span class="type-value">@Model.Value("garages")</span>
+                                            </li>
+                                            <li>
+                                                <span class="type-name">Parking lots</span>
+                                                <span class="type-value">@Model.Value("parkingLots")</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="tabs-2" role="tabpanel">
+                                    <div class="tab-desc">
+                                        @if (Model.HasProperty("pageContentGrid") && Model.HasValue("pageContentGrid"))
+                                        {
+                                            @Html.GetGridHtml(Model, "pageContentGrid")
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-widget">
+                        <h4>Floor plans @floorPlan</h4>
+                        <img src="@floorPlan" alt="@Model.Value("pageTitle"), floor plan @floorPlan">
+                    </div>
+                    <div class="pd-widget">
+                        <h4>Location and Amenities</h4>
+                        <div class="map">
+                            <iframe src="@Model.Value("googleMapLocation")" height="350" style="border:0;" allowfullscreen=""></iframe>
+                        </div>
+                        <div class="map-location">
+                            <div class="row">
+                                @if (Model.HasProperty("amenityItems") && Model.HasValue("amenityItems"))
+                                {
+                                    var amenityItems = Model.Value<IEnumerable<IPublishedElement>>("amenityItems").ToList();
+
+                                    List<IPublishedElement> amenityItemsRight = amenityItems.Take(amenityItems.Count() / 2).ToList();
+                                    List<IPublishedElement> amenityItemsLeft = amenityItems.Skip(amenityItems.Count() / 2).Take(amenityItems.Count() / 2).ToList();
+
+                                    <div class="col-lg-6">
+                                        <div class="ml-item">
+
+
+                                            @foreach (var items in amenityItemsLeft)
+                                            {
+                                                <div class="ml-single-item">
+                                                    <h6>@items.Value("title") <span>( <i class="fa fa-location-arrow"></i> @items.Value("distance") km )</span></h6>
+                                                    <p>@items.Value("subtitle")</p>
+                                                </div>
+                                            }
+
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="ml-item">
+                                            @foreach (var items in amenityItemsRight)
+                                            {
+                                                <div class="ml-single-item">
+                                                    <h6>@items.Value("title") <span>( <i class="fa fa-location-arrow"></i> @items.Value("distance") km )</span></h6>
+                                                    <p>@items.Value("subtitle")</p>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-widget">
+                        <h4>Agent</h4>
+                        <div class="pd-agent">
+                            <div class="agent-pic">
+                                <img src="@agentimage" alt="@agent.Value("fullNames")">
+                            </div>
+                            <div class="agent-text">
+                                <div class="at-title">
+                                    <h6>@agent.Value("fullNames")</h6>
+                                    <span>@agent.Value("memberEmail")</span>
+                                </div>
+                                <p>@agent.Value("comments")</p>
+                                <div class="at-option">
+                                    <div class="at-number">@agent.Value("memberPhone")</div>
+                                    <div class="at-social">
+                                        <a href="#"><i class="fa fa-facebook"></i></a>
+                                        <a href="#"><i class="fa fa-twitter"></i></a>
+                                        <a href="mailto:@agent.Value("memberEmail")"><i class="fa fa-envelope-o"></i></a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pd-widget">
+                        <h4>Book a Appointement</h4>
+                        <form action="#" class="review-form">
+                            <div class="group-input">
+                                <input type="text" placeholder="Name">
+                                <input type="text" placeholder="Email">
+                                <input type="text" placeholder="Website">
+                            </div>
+                            <textarea placeholder="Messages"></textarea>
+                            <div class="rating">
+                                <span>Your Rating:</span>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <button type="submit" class="site-btn">send messages</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="property-sidebar">
+                    <div class="single-sidebar">
+                        <div class="section-title sidebar-title">
+                            <h5>Other Properties</h5>
+                        </div>
+                        <div class="top-agent">
+                            @{
+                                var propertyList = Model.AncestorOrSelf<PropertyList>();
+                                var properties = propertyList.Children<PropertyDetails>().Take(3).ToList();
+                            }
+
+                            @foreach(var sideProperty in properties)
+                            {
+                                var sidePropertyImage = sideProperty.HasValue("headerImage") ? sideProperty.Value<IPublishedContent>("headerImage").Url : "";
+                                <div class="ta-item">
+                                    <div class="ta-pic set-bg" data-setbg="@sidePropertyImage"></div>
+                                    <div class="ta-text">
+                                        <h6><a href="#">@sideProperty.Value("pageTitle")</a></h6>
+                                            <span>@sideProperty.Value("propertyType") - @sideProperty.Value("province")</span>
+                                        <div class="ta-num">@sideProperty.Value("locationType")</div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<!-- Blog Hero Section End -->
-
-
-
-
-@if (Model.HasProperty("pageContentGrid") && Model.HasValue("pageContentGrid"))
-{
-    <!-- Content Section Begin -->
-    <section class="about-section spad">
-        <div class="container">
-            @Html.GetGridHtml(Model, "pageContentGrid")
-        </div>
-    </section>
-    <!-- Content Section End -->
-}
-
+<!-- Property Details Section End -->

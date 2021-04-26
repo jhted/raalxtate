@@ -39,6 +39,10 @@ namespace Umbraco.Web.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
 		string ContractType { get; }
 
+		/// <summary>Floor Plan</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
+		global::Umbraco.Core.Models.PublishedContent.IPublishedContent FloorPlan { get; }
+
 		/// <summary>Garages</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
 		string Garages { get; }
@@ -148,6 +152,17 @@ namespace Umbraco.Web.PublishedModels
 		/// <summary>Static getter for Contract type</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
 		public static string GetContractType(IPropertyOptions that) => that.Value<string>("contractType");
+
+		///<summary>
+		/// Floor Plan
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
+		[ImplementPropertyType("floorPlan")]
+		public global::Umbraco.Core.Models.PublishedContent.IPublishedContent FloorPlan => GetFloorPlan(this);
+
+		/// <summary>Static getter for Floor Plan</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
+		public static global::Umbraco.Core.Models.PublishedContent.IPublishedContent GetFloorPlan(IPropertyOptions that) => that.Value<global::Umbraco.Core.Models.PublishedContent.IPublishedContent>("floorPlan");
 
 		///<summary>
 		/// Garages
