@@ -19,9 +19,18 @@ using Umbraco.ModelsBuilder.Embedded;
 
 namespace Umbraco.Web.PublishedModels
 {
+	// Mixin Content Type with alias "showContent"
+	/// <summary>Show Content</summary>
+	public partial interface IShowContent : IPublishedContent
+	{
+		/// <summary>Show Blogs</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
+		bool ShowBlogs { get; }
+	}
+
 	/// <summary>Show Content</summary>
 	[PublishedModel("showContent")]
-	public partial class ShowContent : PublishedContentModel
+	public partial class ShowContent : PublishedContentModel, IShowContent
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -49,6 +58,10 @@ namespace Umbraco.Web.PublishedModels
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
 		[ImplementPropertyType("showBlogs")]
-		public bool ShowBlogs => this.Value<bool>("showBlogs");
+		public bool ShowBlogs => GetShowBlogs(this);
+
+		/// <summary>Static getter for Show Blogs</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
+		public static bool GetShowBlogs(IShowContent that) => that.Value<bool>("showBlogs");
 	}
 }

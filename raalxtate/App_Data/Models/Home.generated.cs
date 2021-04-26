@@ -21,7 +21,7 @@ namespace Umbraco.Web.PublishedModels
 {
 	/// <summary>Home</summary>
 	[PublishedModel("home")]
-	public partial class Home : PublishedContentModel, ICarousel, IPageContent, IPageHeader, ISEO
+	public partial class Home : PublishedContentModel, ICarousel, IPageContent, IPageHeader, ISEO, IShowContent
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -78,5 +78,12 @@ namespace Umbraco.Web.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
 		[ImplementPropertyType("seoTitle")]
 		public string SeoTitle => global::Umbraco.Web.PublishedModels.SEO.GetSeoTitle(this);
+
+		///<summary>
+		/// Show Blogs
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
+		[ImplementPropertyType("showBlogs")]
+		public bool ShowBlogs => global::Umbraco.Web.PublishedModels.ShowContent.GetShowBlogs(this);
 	}
 }
