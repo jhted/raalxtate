@@ -1,0 +1,23 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<Umbraco.Core.Models.Blocks.BlockListItem>
+
+@using ContentModels = Umbraco.Web.PublishedModels;
+
+@{
+
+    var content = (ContentModels.FooterLinkBlock)Model.Content;
+    var settings = (ContentModels.FooterLinkBlock)Model.Settings;
+
+}
+
+
+<div class="col-lg-2 col-sm-6">
+    <div class="fs-widget">
+        <h5>@content.Title</h5>
+        <ul>
+            @if (content.HasProperty("subLinks") && content.HasValue("subLinks"))
+            {
+                @Html.GetBlockListHtml(content.SubLinks)
+            }
+        </ul>
+    </div>
+</div>

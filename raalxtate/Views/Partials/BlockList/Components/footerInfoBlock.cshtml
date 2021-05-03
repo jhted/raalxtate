@@ -1,0 +1,20 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<Umbraco.Core.Models.Blocks.BlockListItem>
+
+@using ContentModels = Umbraco.Web.PublishedModels;
+
+@{
+
+    var content = (ContentModels.FooterInfoBlock)Model.Content;
+    var settings = (ContentModels.FooterInfoBlock)Model.Settings;
+
+}
+
+
+<div class="col-lg-4 col-md-6">
+    <div class="fs-about">
+        <h5>@content.Title</h5>
+        <p>@content.Text</p>
+    </div>
+</div>
+
+
