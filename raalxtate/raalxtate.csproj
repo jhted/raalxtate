@@ -279,30 +279,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="assets\css\bootstrap.min.css" />
-    <Content Include="assets\css\elegant-icons.css" />
-    <Content Include="assets\css\font-awesome.min.css" />
-    <Content Include="assets\css\image-uploader.min.css" />
-    <Content Include="assets\css\jquery-ui.min.css" />
-    <Content Include="assets\css\magnific-popup.css" />
-    <Content Include="assets\css\nice-select.css" />
-    <Content Include="assets\css\owl.carousel.min.css" />
-    <Content Include="assets\css\richtext.min.css" />
-    <Content Include="assets\css\slicknav.min.css" />
-    <Content Include="assets\css\style.css" />
-    <Content Include="assets\fonts\ElegantIcons.svg" />
-    <Content Include="assets\fonts\fontawesome-webfont.svg" />
-    <Content Include="assets\js\bootstrap.min.js" />
-    <Content Include="assets\js\image-uploader.min.js" />
-    <Content Include="assets\js\jquery-3.3.1.min.js" />
-    <Content Include="assets\js\jquery-ui.min.js" />
-    <Content Include="assets\js\jquery.magnific-popup.min.js" />
-    <Content Include="assets\js\jquery.nice-select.min.js" />
-    <Content Include="assets\js\jquery.richtext.min.js" />
-    <Content Include="assets\js\jquery.slicknav.js" />
-    <Content Include="assets\js\main.js" />
-    <Content Include="assets\js\mixitup.min.js" />
-    <Content Include="assets\js\owl.carousel.min.js" />
     <Content Include="config\grid.editors.config.js" />
     <Content Include="config\Lang\cs-CZ.user.xml" />
     <Content Include="config\Lang\da-DK.user.xml" />
@@ -343,15 +319,6 @@
     <Content Include="config\HealthChecks.config" />
     <Content Include="config\ClientDependency.config" />
     <Content Include="config\BackOfficeTours\getting-started.json" />
-    <Content Include="assets\css\style.css.map" />
-    <Content Include="assets\fonts\ElegantIcons.eot" />
-    <Content Include="assets\fonts\ElegantIcons.ttf" />
-    <Content Include="assets\fonts\ElegantIcons.woff" />
-    <Content Include="assets\fonts\fontawesome-webfont.eot" />
-    <Content Include="assets\fonts\fontawesome-webfont.ttf" />
-    <Content Include="assets\fonts\fontawesome-webfont.woff" />
-    <Content Include="assets\fonts\fontawesome-webfont.woff2" />
-    <Content Include="assets\fonts\FontAwesome.otf" />
     <None Include="packages.config" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Partials\Grid\Editors\Textstring.cshtml" />
@@ -426,8 +393,6 @@
     <Content Include="Views\MacroPartials\RenderUmbracoFormScripts.cshtml" />
     <Content Include="Views\Partials\Forms\Themes\raalxtate\Fieldtypes\FieldType.RadioButtonList.cshtml" />
     <Content Include="Views\Partials\Forms\Themes\raalxtate\Form.cshtml" />
-    <Content Include="Views\Partials\BlockList\Components\linkItem.cshtml" />
-    <Content Include="Views\Partials\BlockList\Components\footerInfoBlock.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
