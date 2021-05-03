@@ -1,0 +1,14 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<Umbraco.Core.Models.Blocks.BlockListItem>
+
+@using ContentModels = Umbraco.Web.PublishedModels;
+
+@{
+
+    var content = (ContentModels.LinkItem)Model.Content;
+    var settings = (ContentModels.LinkItem)Model.Settings;
+
+}
+
+
+
+<li><a href="@content.Link.Url">@content.Title</a></li>
