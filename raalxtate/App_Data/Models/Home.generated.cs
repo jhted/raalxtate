@@ -21,7 +21,7 @@ namespace Umbraco.Web.PublishedModels
 {
 	/// <summary>Home</summary>
 	[PublishedModel("home")]
-	public partial class Home : PublishedContentModel, ICarousel, IPageContent, IPageHeader, ISEO, IShowContent
+	public partial class Home : PublishedContentModel, ICarousel, IChooseUsSection, IPageContent, IPageHeader, ISEO, IShowContent
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -50,6 +50,41 @@ namespace Umbraco.Web.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
 		[ImplementPropertyType("carouselItems")]
 		public global::Umbraco.Core.Models.Blocks.BlockListModel CarouselItems => global::Umbraco.Web.PublishedModels.Carousel.GetCarouselItems(this);
+
+		///<summary>
+		/// Choose Us Features
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
+		[ImplementPropertyType("chooseUsFeatures")]
+		public global::System.Collections.Generic.IEnumerable<global::Umbraco.Web.PublishedModels.ChooseUsItem> ChooseUsFeatures => global::Umbraco.Web.PublishedModels.ChooseUsSection.GetChooseUsFeatures(this);
+
+		///<summary>
+		/// Image
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
+		[ImplementPropertyType("chooseUsImage")]
+		public global::Umbraco.Core.Models.PublishedContent.IPublishedContent ChooseUsImage => global::Umbraco.Web.PublishedModels.ChooseUsSection.GetChooseUsImage(this);
+
+		///<summary>
+		/// Subtitle
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
+		[ImplementPropertyType("chooseUsSubtitle")]
+		public string ChooseUsSubtitle => global::Umbraco.Web.PublishedModels.ChooseUsSection.GetChooseUsSubtitle(this);
+
+		///<summary>
+		/// Title
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
+		[ImplementPropertyType("chooseUsTitle")]
+		public string ChooseUsTitle => global::Umbraco.Web.PublishedModels.ChooseUsSection.GetChooseUsTitle(this);
+
+		///<summary>
+		/// Shoe Choose Us Section
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
+		[ImplementPropertyType("shoeChooseUsSection")]
+		public bool ShoeChooseUsSection => global::Umbraco.Web.PublishedModels.ChooseUsSection.GetShoeChooseUsSection(this);
 
 		///<summary>
 		/// Content Grid

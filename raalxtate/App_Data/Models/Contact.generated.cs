@@ -21,7 +21,7 @@ namespace Umbraco.Web.PublishedModels
 {
 	/// <summary>Contact</summary>
 	[PublishedModel("contact")]
-	public partial class Contact : PublishedContentModel, IPageContent, IPageHeader, ISEO
+	public partial class Contact : PublishedContentModel, IFormSection, IPageContent, IPageHeader, ISEO
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -43,6 +43,13 @@ namespace Umbraco.Web.PublishedModels
 		{ }
 
 		// properties
+
+		///<summary>
+		/// Contact Form
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
+		[ImplementPropertyType("contactForm")]
+		public object ContactForm => global::Umbraco.Web.PublishedModels.FormSection.GetContactForm(this);
 
 		///<summary>
 		/// Content Grid

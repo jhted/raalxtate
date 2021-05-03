@@ -3,6 +3,7 @@
 
 @{
 
+    // var root = Model.AncestorOrSelf<Home>();
     var root = Model.AncestorOrSelf(1);
     var settings = root.DescendantsOfType("globalConfig").FirstOrDefault();
     var logoImage = settings.HasValue("logo") ? settings.Value<IPublishedContent>("logo").Url : "";

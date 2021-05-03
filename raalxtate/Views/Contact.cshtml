@@ -1,10 +1,50 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+
+
+
 @{
-	Layout = "Master.cshtml";
+    Layout = "Master.cshtml";
+    var contactForm = Model.Value("contactForm");
 }
 
 @* the fun starts here *@
 
 
 
+
 @Html.Partial("~/Views/Partials/header.cshtml")
+
+
+
+
+@if (Model.HasProperty("pageContentGrid") && Model.HasValue("pageContentGrid"))
+{
+    <!-- Content Section Begin -->
+    <section class="about-section" style="padding-top:20px;">
+        <div class="container">
+            <!-- Content Section Begin -->
+                <div class="col-mid-4">
+                    @Html.GetGridHtml(Model, "pageContentGrid")
+                </div>
+            <!-- Content Section End -->
+        </div>
+    </section>
+    <!-- Content Section End -->
+}
+<!-- Content Section Begin -->
+<section class="about-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                @if (contactForm != null)
+                {
+
+                    @Umbraco.RenderMacro("renderUmbracoForm", new { FormGuid = contactForm, FormTheme = "raalxtate", ExcludeScripts = "1" })
+                }
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+</section>
+<!-- Content Section End -->

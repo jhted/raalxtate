@@ -7,7 +7,7 @@
 
 
 
-
+    var propertyroot = Model.Descendants<PropertyDetails>().Where(x => x.IsVisible());
 
 }
 
@@ -38,9 +38,8 @@
 {
 
 
-    var blogs = Model.Descendants<PropertyDetails>().Where(x => x.IsVisible());
 
-    var blogList = blogs.Take(6);
+    var propertyList1 = propertyroot.Take(6);
 
     <!-- Property Section Begin -->
     <section class="property-section spad">
@@ -56,7 +55,7 @@
                 @*
 
                 *@
-                @foreach (var property in blogList)
+                @foreach (var property in propertyList1)
                 {
                     @Html.Partial("~/Views/Partials/propertyBox.cshtml", property)
                 }
@@ -67,165 +66,91 @@
 }
 
 
-<!-- Chooseus Section Begin -->
-<section class="chooseus-section spad set-bg" data-setbg="img/chooseus/chooseus-bg.jpg">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8">
-                <div class="chooseus-text">
-                    <div class="section-title">
-                        <h4>Why choose us</h4>
+
+@if (Model.HasProperty("shoeChooseUsSection") && Model.HasValue("shoeChooseUsSection"))
+{
+    var chooseUsImage = Model.HasValue("chooseUsImage") ? Model.Value<IPublishedContent>("chooseUsImage").Url : "";
+    var chooseUsFeatures = Model.Value<IEnumerable<IPublishedElement>>("chooseUsFeatures");
+    <!-- Chooseus Section Begin -->
+    <section class="chooseus-section spad set-bg" data-setbg="@chooseUsImage">
+        <div class="container" style="background-color:rgba(0,0,0,.8); padding-top:5vmin;">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="chooseus-text">
+                        <div class="section-title">
+                            <h4>@Model.Value("chooseUsTitle")</h4>
+                        </div>
+                        <p>@Model.Value("chooseUsSubtitle")</p>
                     </div>
-                    <p>
-                        Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown
-                        printer took a galley of type and scrambled it to make a type specimen book.
-                    </p>
-                </div>
-                <div class="chooseus-features">
-                    <div class="cf-item">
-                        <div class="cf-pic">
-                            <img src="img/chooseus/chooseus-icon-1.png" alt="">
-                        </div>
-                        <div class="cf-text">
-                            <h5>Find your future home</h5>
-                            <p>We help you find a new home by offering a smart real estate.</p>
-                        </div>
-                    </div>
-                    <div class="cf-item">
-                        <div class="cf-pic">
-                            <img src="img/chooseus/chooseus-icon-2.png" alt="">
-                        </div>
-                        <div class="cf-text">
-                            <h5>Buy or rent homes</h5>
-                            <p>Millions of houses and apartments in your favourite cities</p>
-                        </div>
-                    </div>
-                    <div class="cf-item">
-                        <div class="cf-pic">
-                            <img src="img/chooseus/chooseus-icon-3.png" alt="">
-                        </div>
-                        <div class="cf-text">
-                            <h5>Experienced agents</h5>
-                            <p>Find an agent who knows your market best</p>
-                        </div>
-                    </div>
-                    <div class="cf-item">
-                        <div class="cf-pic">
-                            <img src="img/chooseus/chooseus-icon-4.png" alt="">
-                        </div>
-                        <div class="cf-text">
-                            <h5>List your own property</h5>
-                            <p>Sign up now and sell or rent your own properties</p>
-                        </div>
+                    <div class="chooseus-features">
+
+                            @foreach (var item in chooseUsFeatures)
+                            {
+                                <div class="cf-item">
+                                    <div class="cf-pic">
+                                        <img src="img/chooseus/chooseus-icon-1.png" alt="">
+                                    </div>
+                                    <div class="cf-text">
+                                        <h5>@item.Value("title")</h5>
+                                        <p>@item.Value("subtitle")</p>
+                                    </div>
+                                </div>
+                            }
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-<!-- Chooseus Section End -->
+    </section>
+    <!-- Chooseus Section End -->
+}
+
 
 <!-- Team Section Begin -->
+@{
+    var root = Model.Children<OurTeam>().FirstOrDefault();
+    var agents = root.Children<Person>().Where(x => x.IsVisible()).Take(3);
+
+    var agentUrl = root.Url;
+}
 <section class="team-section spad">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-8">
                 <div class="section-title">
-                    <h4>Latest Property</h4>
+                    <h4>Our Team</h4>
                 </div>
             </div>
             <div class="col-lg-4 col-md-4">
                 <div class="team-btn">
-                    <a href="#"><i class="fa fa-user"></i> ALL counselor</a>
+                    <a href="@agentUrl"><i class="fa fa-user"></i> See More</a>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4">
-                <div class="ts-item">
-                    <div class="ts-text">
-                        <img src="img/team/team-1.jpg" alt="">
-                        <h5>Ashton Kutcher</h5>
-                        <span>123-455-688</span>
-                        <p>Ipsum dolor amet, consectetur adipiscing elit, eiusmod tempor incididunt lorem.</p>
-                        <div class="ts-social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-envelope-o"></i></a>
+            @foreach (var agentpage in agents)
+            {
+                var agentData = agentpage.Value<Agent>("selectAgent");
+                var agantImage = agentData.HasValue("image") ? agentData.Value<IPublishedContent>("image").Url : "";
+                <div class="col-md-4">
+                    <div class="ts-item">
+                        <div class="ts-text">
+                            <img src="@agantImage" alt="@agentData.Value("fullNames")">
+                            <h5>@agentData.Value("fullNames")</h5>
+                            <span>@agentData.Value("memberEmail")</span>
+                            <p>Ipsum dolor amet, consectetur adipiscing elit, eiusmod tempor incididunt lorem.</p>
+                            <div class="ts-social">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-envelope-o"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="ts-item">
-                    <div class="ts-text">
-                        <img src="img/team/team-2.jpg" alt="">
-                        <h5>Ashton Kutcher</h5>
-                        <span>123-455-688</span>
-                        <p>Ipsum dolor amet, consectetur adipiscing elit, eiusmod tempor incididunt lorem.</p>
-                        <div class="ts-social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-envelope-o"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="ts-item">
-                    <div class="ts-text">
-                        <img src="img/team/team-3.jpg" alt="">
-                        <h5>Ashton Kutcher</h5>
-                        <span>123-455-688</span>
-                        <p>Ipsum dolor amet, consectetur adipiscing elit, eiusmod tempor incididunt lorem.</p>
-                        <div class="ts-social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-envelope-o"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            }
         </div>
     </div>
 </section>
 <!-- Team Section End -->
-<!-- Categories Section Begin -->
-<section class="categories-section">
-    <div class="cs-item-list">
-        <div class="cs-item set-bg" data-setbg="img/categories/cat-1.jpg">
-            <div class="cs-text">
-                <h5>Apartment</h5>
-                <span>230 property</span>
-            </div>
-        </div>
-        <div class="cs-item set-bg" data-setbg="img/categories/cat-2.jpg">
-            <div class="cs-text">
-                <h5>Villa</h5>
-                <span>230 property</span>
-            </div>
-        </div>
-        <div class="cs-item set-bg" data-setbg="img/categories/cat-3.jpg">
-            <div class="cs-text">
-                <h5>House</h5>
-                <span>230 property</span>
-            </div>
-        </div>
-        <div class="cs-item set-bg" data-setbg="img/categories/cat-4.jpg">
-            <div class="cs-text">
-                <h5>Restaurent</h5>
-                <span>230 property</span>
-            </div>
-        </div>
-        <div class="cs-item set-bg" data-setbg="img/categories/cat-5.jpg">
-            <div class="cs-text">
-                <h5>Office</h5>
-                <span>230 property</span>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Categories Section End -->
 <!-- Testimonial Section Begin -->
 <section class="testimonial-section spad">
     <div class="container">
