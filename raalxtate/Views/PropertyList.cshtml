@@ -7,21 +7,38 @@
 @{
     Layout = "Master.cshtml";
     @*
-        
-    var bloglist = Model.Root().Descendants<PropertyList>().FirstOrDefault();
+
+        var bloglist = Model.Root().Descendants<PropertyList>().FirstOrDefault();
     *@
 
-    var blogs = Model.Descendants<PropertyDetails>().Where(x => x.IsVisible());
+        var root = Model.AncestorOrSelf<Home>();
+
+        var sharedContent = root.DescendantsOfType("shared").FirstOrDefault(); ;
+        var provincesCat = sharedContent.DescendantsOfType("provinceCat");
+        var cityCat = sharedContent.DescendantsOfType("cityCat");
+        var subcityCat = sharedContent.DescendantsOfType("subcityCat");
+        var propertyTypeCat = sharedContent.DescendantsOfType("propertyTypeCat");
+        var contractTypeCat = sharedContent.DescendantsOfType("contractTypeCat");
+
+        var defaulType = QueryStringHelper.GetIntFromQueryString(Request, "type", 0);
+        var defaulProvince = QueryStringHelper.GetIntFromQueryString(Request, "province", 0);
+        var defaulCity = QueryStringHelper.GetIntFromQueryString(Request, "city", 0);
+        var defaulSubcity = QueryStringHelper.GetIntFromQueryString(Request, "subcity", 0);
+        var defaulContract = QueryStringHelper.GetIntFromQueryString(Request, "contract", 0);
+        var defaulPrice = QueryStringHelper.GetIntFromQueryString(Request, "price", 0);
+    var pageNumber = QueryStringHelper.GetIntFromQueryString(Request, "page", 1);
+
+    var properties = Model.Descendants<PropertyDetails>().Where(x => defaulProvince == 0 ? true : (x.PropertyProvince.Name == defaulProvince.ToString()));
 
     int blogSize = Model.HasValue("blogTotal") ? Model.Value<int>("blogTotal") : 9;
-    var blogTotal = blogs != null && blogs.Any() ? blogs.Count() : 0;
+    var blogTotal = properties != null && properties.Any() ? properties.Count() : 0;
 
-    var pageNumber = QueryStringHelper.GetIntFromQueryString(Request, "page", 1);
+
     var totalPages = Math.Ceiling((double)blogTotal / (double)blogSize);
 
-    var blogList = blogs.Skip((pageNumber - 1) * blogSize).Take(blogSize);
+    var blogList = properties.Skip((pageNumber - 1) * blogSize).Take(blogSize);
 
-    var pageUrl = Model.Url;
+    var pageUrl = Model.Url();
 }
 
 @* the fun starts here *@
@@ -56,7 +73,7 @@
         </div>
         <div class="row">
             @*
-                
+
             *@
             @foreach (var property in blogList)
             {
@@ -110,5 +127,3 @@
     </div>
 </section>
 <!-- Property Section End -->
-
-

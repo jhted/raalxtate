@@ -4,9 +4,9 @@
 @{
 
     // var root = Model.AncestorOrSelf<Home>();
-    var root = Model.AncestorOrSelf(1);
+    var root = Model.AncestorOrSelf<Home>();
     var settings = root.DescendantsOfType("globalConfig").FirstOrDefault();
-    var logoImage = settings.HasValue("logo") ? settings.Value<IPublishedContent>("logo").Url : "";
+    var logoImage = settings.HasValue("logo") ? settings.Value<IPublishedContent>("logo").Url() : "";
     var navigationMenu = settings.Value("navigationMenu");
     // Layout = "Master.cshtml";
 
@@ -22,7 +22,7 @@
             <div class="row">
                 <div class="col-lg-2">
                     <div class="logo">
-                        <a href="./index.html"><img src="@logoImage" alt=""/></a>
+                        <a href="/"><img src="@logoImage" alt=""/></a>
                     </div>
                 </div>
                 <div class="col-lg-10">

@@ -21,7 +21,7 @@ namespace Umbraco.Web.PublishedModels
 {
 	/// <summary>Property Details</summary>
 	[PublishedModel("propertyDetails")]
-	public partial class PropertyDetails : PublishedContentModel, ICarousel, IContactInfromation, IPageContent, IPageHeader, IPropertyOptions, ISelectAnAgent, ISEO
+	public partial class PropertyDetails : PublishedContentModel, ICarousel, IContactInfromation, IPageContent, IPageHeader, IPropertyOptions, ISelectAnAgent, ISEO, IShowContent
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -143,13 +143,6 @@ namespace Umbraco.Web.PublishedModels
 		public int HomeArea => global::Umbraco.Web.PublishedModels.PropertyOptions.GetHomeArea(this);
 
 		///<summary>
-		/// Location Type
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
-		[ImplementPropertyType("locationType")]
-		public string LocationType => global::Umbraco.Web.PublishedModels.PropertyOptions.GetLocationType(this);
-
-		///<summary>
 		/// Parking lots
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
@@ -164,18 +157,32 @@ namespace Umbraco.Web.PublishedModels
 		public int Price => global::Umbraco.Web.PublishedModels.PropertyOptions.GetPrice(this);
 
 		///<summary>
-		/// Property Type
+		/// City
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
-		[ImplementPropertyType("propertyType")]
-		public string PropertyType => global::Umbraco.Web.PublishedModels.PropertyOptions.GetPropertyType(this);
+		[ImplementPropertyType("propertyCity")]
+		public global::Umbraco.Core.Models.PublishedContent.IPublishedContent PropertyCity => global::Umbraco.Web.PublishedModels.PropertyOptions.GetPropertyCity(this);
 
 		///<summary>
 		/// Province
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
-		[ImplementPropertyType("province")]
-		public string Province => global::Umbraco.Web.PublishedModels.PropertyOptions.GetProvince(this);
+		[ImplementPropertyType("propertyProvince")]
+		public global::Umbraco.Core.Models.PublishedContent.IPublishedContent PropertyProvince => global::Umbraco.Web.PublishedModels.PropertyOptions.GetPropertyProvince(this);
+
+		///<summary>
+		/// Sub City
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
+		[ImplementPropertyType("propertySubcity")]
+		public global::Umbraco.Core.Models.PublishedContent.IPublishedContent PropertySubcity => global::Umbraco.Web.PublishedModels.PropertyOptions.GetPropertySubcity(this);
+
+		///<summary>
+		/// Property Type
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
+		[ImplementPropertyType("propertyType")]
+		public global::Umbraco.Core.Models.PublishedContent.IPublishedContent PropertyType => global::Umbraco.Web.PublishedModels.PropertyOptions.GetPropertyType(this);
 
 		///<summary>
 		/// Rooms
@@ -204,5 +211,12 @@ namespace Umbraco.Web.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
 		[ImplementPropertyType("seoTitle")]
 		public string SeoTitle => global::Umbraco.Web.PublishedModels.SEO.GetSeoTitle(this);
+
+		///<summary>
+		/// Show Blogs
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
+		[ImplementPropertyType("showBlogs")]
+		public bool ShowBlogs => global::Umbraco.Web.PublishedModels.ShowContent.GetShowBlogs(this);
 	}
 }

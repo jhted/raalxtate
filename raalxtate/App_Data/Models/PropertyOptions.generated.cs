@@ -55,10 +55,6 @@ namespace Umbraco.Web.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
 		int HomeArea { get; }
 
-		/// <summary>Location Type</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
-		string LocationType { get; }
-
 		/// <summary>Parking lots</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
 		string ParkingLots { get; }
@@ -67,13 +63,21 @@ namespace Umbraco.Web.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
 		int Price { get; }
 
-		/// <summary>Property Type</summary>
+		/// <summary>City</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
-		string PropertyType { get; }
+		global::Umbraco.Core.Models.PublishedContent.IPublishedContent PropertyCity { get; }
 
 		/// <summary>Province</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
-		string Province { get; }
+		global::Umbraco.Core.Models.PublishedContent.IPublishedContent PropertyProvince { get; }
+
+		/// <summary>Sub City</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
+		global::Umbraco.Core.Models.PublishedContent.IPublishedContent PropertySubcity { get; }
+
+		/// <summary>Property Type</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
+		global::Umbraco.Core.Models.PublishedContent.IPublishedContent PropertyType { get; }
 
 		/// <summary>Rooms</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
@@ -198,17 +202,6 @@ namespace Umbraco.Web.PublishedModels
 		public static int GetHomeArea(IPropertyOptions that) => that.Value<int>("homeArea");
 
 		///<summary>
-		/// Location Type
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
-		[ImplementPropertyType("locationType")]
-		public string LocationType => GetLocationType(this);
-
-		/// <summary>Static getter for Location Type</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
-		public static string GetLocationType(IPropertyOptions that) => that.Value<string>("locationType");
-
-		///<summary>
 		/// Parking lots
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
@@ -231,26 +224,48 @@ namespace Umbraco.Web.PublishedModels
 		public static int GetPrice(IPropertyOptions that) => that.Value<int>("price");
 
 		///<summary>
-		/// Property Type
+		/// City
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
-		[ImplementPropertyType("propertyType")]
-		public string PropertyType => GetPropertyType(this);
+		[ImplementPropertyType("propertyCity")]
+		public global::Umbraco.Core.Models.PublishedContent.IPublishedContent PropertyCity => GetPropertyCity(this);
 
-		/// <summary>Static getter for Property Type</summary>
+		/// <summary>Static getter for City</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
-		public static string GetPropertyType(IPropertyOptions that) => that.Value<string>("propertyType");
+		public static global::Umbraco.Core.Models.PublishedContent.IPublishedContent GetPropertyCity(IPropertyOptions that) => that.Value<global::Umbraco.Core.Models.PublishedContent.IPublishedContent>("propertyCity");
 
 		///<summary>
 		/// Province
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
-		[ImplementPropertyType("province")]
-		public string Province => GetProvince(this);
+		[ImplementPropertyType("propertyProvince")]
+		public global::Umbraco.Core.Models.PublishedContent.IPublishedContent PropertyProvince => GetPropertyProvince(this);
 
 		/// <summary>Static getter for Province</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
-		public static string GetProvince(IPropertyOptions that) => that.Value<string>("province");
+		public static global::Umbraco.Core.Models.PublishedContent.IPublishedContent GetPropertyProvince(IPropertyOptions that) => that.Value<global::Umbraco.Core.Models.PublishedContent.IPublishedContent>("propertyProvince");
+
+		///<summary>
+		/// Sub City
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
+		[ImplementPropertyType("propertySubcity")]
+		public global::Umbraco.Core.Models.PublishedContent.IPublishedContent PropertySubcity => GetPropertySubcity(this);
+
+		/// <summary>Static getter for Sub City</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
+		public static global::Umbraco.Core.Models.PublishedContent.IPublishedContent GetPropertySubcity(IPropertyOptions that) => that.Value<global::Umbraco.Core.Models.PublishedContent.IPublishedContent>("propertySubcity");
+
+		///<summary>
+		/// Property Type
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
+		[ImplementPropertyType("propertyType")]
+		public global::Umbraco.Core.Models.PublishedContent.IPublishedContent PropertyType => GetPropertyType(this);
+
+		/// <summary>Static getter for Property Type</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
+		public static global::Umbraco.Core.Models.PublishedContent.IPublishedContent GetPropertyType(IPropertyOptions that) => that.Value<global::Umbraco.Core.Models.PublishedContent.IPublishedContent>("propertyType");
 
 		///<summary>
 		/// Rooms

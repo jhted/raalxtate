@@ -19,7 +19,7 @@
 
     var blogList = blogs.Skip((pageNumber - 1) * blogSize).Take(blogSize);
 
-    var pageUrl = Model.Url;
+    var pageUrl = Model.Url();
     var isFirst = 0;
 }
 
@@ -41,7 +41,7 @@
 
                     @foreach (var blog in blogList)
                     {
-                        var blogImage = blog.HasValue("headerImage") ? blog.Value<IPublishedContent>("headerImage").Url : "https://localhost:44385/media/3g4k0bd0/blog-5.jpg";
+                        var blogImage = blog.HasValue("headerImage") ? blog.Value<IPublishedContent>("headerImage").Url() : "https://localhost:44385/media/3g4k0bd0/blog-5.jpg";
 
                         isFirst++;
 
@@ -53,14 +53,14 @@
                                 <img src="@blogImage" alt="@blog.Value("pageTitle")" style="max-width: @(isFirst < 2 ? "100%" : "300px");">
                             </div>
                             <div class="bi-text">
-                                <h4><a href="@blog.Url">@blog.Value("pageTitle")</a></h4>
+                                <h4><a href="@blog.Url()">@blog.Value("pageTitle")</a></h4>
                                 <ul>
                                     <li>by <span>@agent.Value("fullName")</span></li>
                                     <li>Seb 24, 2019</li>
                                     <li>12 Comment</li>
                                 </ul>
                                 <p>Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book sentially unchanged...</p>
-                                <a href="@blog.Url" class="read-more">Read more <span class="arrow_right"></span></a>
+                                <a href="@blog.Url()" class="read-more">Read more <span class="arrow_right"></span></a>
                             </div>
                         </div>
 

@@ -69,7 +69,7 @@
 
 @if (Model.HasProperty("shoeChooseUsSection") && Model.HasValue("shoeChooseUsSection"))
 {
-    var chooseUsImage = Model.HasValue("chooseUsImage") ? Model.Value<IPublishedContent>("chooseUsImage").Url : "";
+    var chooseUsImage = Model.HasValue("chooseUsImage") ? Model.Value<IPublishedContent>("chooseUsImage").Url() : "";
     var chooseUsFeatures = Model.Value<IEnumerable<IPublishedElement>>("chooseUsFeatures");
     <!-- Chooseus Section Begin -->
     <section class="chooseus-section spad set-bg" data-setbg="@chooseUsImage">
@@ -110,7 +110,7 @@
     var root = Model.Children<OurTeam>().FirstOrDefault();
     var agents = root.Children<Person>().Where(x => x.IsVisible()).Take(3);
 
-    var agentUrl = root.Url;
+    var agentUrl = root.Url();
 }
 <section class="team-section spad">
     <div class="container">
@@ -130,7 +130,7 @@
             @foreach (var agentpage in agents)
             {
                 var agentData = agentpage.Value<Agent>("selectAgent");
-                var agantImage = agentData.HasValue("image") ? agentData.Value<IPublishedContent>("image").Url : "";
+                var agantImage = agentData.HasValue("image") ? agentData.Value<IPublishedContent>("image").Url() : "";
                 <div class="col-md-4">
                     <div class="ts-item">
                         <div class="ts-text">

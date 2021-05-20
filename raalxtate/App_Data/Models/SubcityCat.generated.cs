@@ -19,49 +19,36 @@ using Umbraco.ModelsBuilder.Embedded;
 
 namespace Umbraco.Web.PublishedModels
 {
-	// Mixin Content Type with alias "carousel"
-	/// <summary>Carousel</summary>
-	public partial interface ICarousel : IPublishedContent
-	{
-		/// <summary>Carousel Items</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
-		global::Umbraco.Core.Models.Blocks.BlockListModel CarouselItems { get; }
-	}
-
-	/// <summary>Carousel</summary>
-	[PublishedModel("carousel")]
-	public partial class Carousel : PublishedContentModel, ICarousel
+	/// <summary>Subcity</summary>
+	[PublishedModel("subcityCat")]
+	public partial class SubcityCat : PublishedContentModel
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
-		public new const string ModelTypeAlias = "carousel";
+		public new const string ModelTypeAlias = "subcityCat";
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
 		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
 		public new static IPublishedContentType GetModelContentType()
 			=> PublishedModelUtility.GetModelContentType(ModelItemType, ModelTypeAlias);
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
-		public static IPublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Carousel, TValue>> selector)
+		public static IPublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<SubcityCat, TValue>> selector)
 			=> PublishedModelUtility.GetModelPropertyType(GetModelContentType(), selector);
 #pragma warning restore 0109
 
 		// ctor
-		public Carousel(IPublishedContent content)
+		public SubcityCat(IPublishedContent content)
 			: base(content)
 		{ }
 
 		// properties
 
 		///<summary>
-		/// Carousel Items
+		/// City
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
-		[ImplementPropertyType("carouselItems")]
-		public global::Umbraco.Core.Models.Blocks.BlockListModel CarouselItems => GetCarouselItems(this);
-
-		/// <summary>Static getter for Carousel Items</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.12.2")]
-		public static global::Umbraco.Core.Models.Blocks.BlockListModel GetCarouselItems(ICarousel that) => that.Value<global::Umbraco.Core.Models.Blocks.BlockListModel>("carouselItems");
+		[ImplementPropertyType("parentCity")]
+		public global::Umbraco.Core.Models.PublishedContent.IPublishedContent ParentCity => this.Value<global::Umbraco.Core.Models.PublishedContent.IPublishedContent>("parentCity");
 	}
 }

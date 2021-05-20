@@ -393,6 +393,7 @@
     <Content Include="Views\MacroPartials\RenderUmbracoFormScripts.cshtml" />
     <Content Include="Views\Partials\Forms\Themes\raalxtate\Fieldtypes\FieldType.RadioButtonList.cshtml" />
     <Content Include="Views\Partials\Forms\Themes\raalxtate\Form.cshtml" />
+    <Content Include="Views\Partials\BlockList\Components\linkItem.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

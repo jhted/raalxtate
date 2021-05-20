@@ -1,3 +1,4 @@
+C:\Users\Mike\source\repos\raalxtate\raalxtate\obj\Debug\raalxtate.csproj.CoreCompileInputs.cache
 C:\Users\Mike\source\repos\raalxtate\raalxtate\bin\amd64\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest
 C:\Users\Mike\source\repos\raalxtate\raalxtate\bin\amd64\Microsoft.VC90.CRT\msvcr90.dll
 C:\Users\Mike\source\repos\raalxtate\raalxtate\bin\amd64\sqlceca40.dll
@@ -205,8 +206,7 @@ C:\Users\Mike\source\repos\raalxtate\raalxtate\bin\Umbraco.Web.pdb
 C:\Users\Mike\source\repos\raalxtate\raalxtate\bin\Umbraco.Web.xml
 C:\Users\Mike\source\repos\raalxtate\raalxtate\bin\Umbraco.Web.UI.xml
 C:\Users\Mike\source\repos\raalxtate\raalxtate\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Mike\source\repos\raalxtate\raalxtate\obj\Debug\raalxtate.csprojAssemblyReference.cache
-C:\Users\Mike\source\repos\raalxtate\raalxtate\obj\Debug\raalxtate.csproj.CoreCompileInputs.cache
 C:\Users\Mike\source\repos\raalxtate\raalxtate\obj\Debug\raalxtate.csproj.CopyComplete
 C:\Users\Mike\source\repos\raalxtate\raalxtate\obj\Debug\raalxtate.dll
 C:\Users\Mike\source\repos\raalxtate\raalxtate\obj\Debug\raalxtate.pdb
+C:\Users\Mike\source\repos\raalxtate\raalxtate\obj\Debug\raalxtate.csprojAssemblyReference.cache

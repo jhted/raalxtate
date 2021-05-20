@@ -1,11 +1,26 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
 
+@using Raalxtate.Helpers
 
 @{
+    // var root = Model.AncestorOrSelf<Home>();
+    var root = Model.AncestorOrSelf<Home>();
+    var sharedContent = root.DescendantsOfType("shared").FirstOrDefault(); ;
+    var provincesCat = sharedContent.DescendantsOfType("provinceCat");
+    var cityCat = sharedContent.DescendantsOfType("cityCat");
+    var subcityCat = sharedContent.DescendantsOfType("subcityCat");
+    var propertyTypeCat = sharedContent.DescendantsOfType("propertyTypeCat");
+    var contractTypeCat = sharedContent.DescendantsOfType("contractTypeCat");
+    var defaulType = QueryStringHelper.GetIntFromQueryString(Request, "type", 0);
+    var defaulProvince = QueryStringHelper.GetIntFromQueryString(Request, "province", 0);
+    var defaulCity = QueryStringHelper.GetIntFromQueryString(Request, "city", 0);
+    var defaulSubcity = QueryStringHelper.GetIntFromQueryString(Request, "subcity", 0);
+    var defaulContract = QueryStringHelper.GetIntFromQueryString(Request, "contract", 0);
+    var defaulPrice = QueryStringHelper.GetIntFromQueryString(Request, "price", 0);
 
 }
 
-@* the fun starts here *@
+
 
 
 <!-- Search Section Begin -->
@@ -17,172 +32,115 @@
                     <h4>Search for a property</h4>
                 </div>
             </div>
-            <div class="col-lg-5">
-                <div class="change-btn">
-                    <div class="cb-item">
-                        <label for="cb-rent" class="active">
-                            For Rent
-                            <input type="radio" id="cb-rent">
-                        </label>
-                    </div>
-                    <div class="cb-item">
-                        <label for="cb-sale">
-                            For Sale
-                            <input type="radio" id="cb-sale">
-                        </label>
-                    </div>
-                </div>
-            </div>
         </div>
-        <div class="search-form-content">
-            <form action="#" class="filter-form">
-                <select class="sm-width">
-                    <option value="">Chose The Provences</option>
-                    @{ 
-                        var list = Model.Root().DescendantsOfType("propertyDetails");
-
-                        var prov = list.Select(x => x.Value("province"));
-
-                        foreach(var x in prov)
-            {
-                    <option value="">@x</option>
-
-            }
-
-                            }
+        <div class="search-form-content" style="overflow: visible;">
+            <form onsubmit="return SearchNow(event)" class="filter-form">
+                <select class="sm-width" id="province" value>
+                    <option value="">Select a Province</option>
+                    @if (provincesCat != null && provincesCat.Any())
+                    {
+                        foreach (var province in provincesCat)
+                        {
+                            <option value="@province.Name.ToLower()">@province.Name</option>
+                        }
+                    }
                 </select>
-                <select class="sm-width">
-                    <option value="">Location</option>
+                <select class="sm-width" id="city">
+                    <option value="">Select a City</option>
+                    @if (cityCat != null && cityCat.Any())
+                    {
+                        foreach (var city in cityCat)
+                        {
+                            <option value="@city.Name.ToLower()">@city.Name</option>
+                        }
+                    }
                 </select>
-                <select class="sm-width">
-                    <option value="">Property Status</option>
+                <select class="sm-width" id="subcity">
+                    <option value="">Select a Subcity</option>
+                    @if (subcityCat != null && subcityCat.Any())
+                    {
+                        foreach (var subcity in subcityCat)
+                        {
+                            <option value="@subcity.Name.ToLower()">@subcity.Name</option>
+                        }
+                    }
                 </select>
-                <select class="sm-width">
-                    <option value="">Property Type</option>
+                <select class="sm-width" id="type">
+                    @if (propertyTypeCat != null && propertyTypeCat.Any())
+                    {
+                        foreach (var propertyType in propertyTypeCat)
+                        {
+                            <option value="@propertyType.Name.ToLower()">@propertyType.Name</option>
+                        }
+                    }
                 </select>
-                <select class="sm-width">
-                    <option value="">No Of Bedrooms</option>
+                <select class="sm-width" id="contract">
+                    @if (contractTypeCat != null && contractTypeCat.Any())
+                    {
+                        foreach (var contractType in contractTypeCat)
+                        {
+                            <option value="@contractType.Name.ToLower()">@contractType.Name</option>
+                        }
+                    }
                 </select>
-                <select class="sm-width">
-                    <option value="">No Of Bathrooms</option>
+                <select class="sm-width" id="price">
+                    <option value="">All Prices</option>
+                    <option value="1">Less than R1000</option>
+                    <option value="2">R1000 - R10 000</option>
+                    <option value="3">R10 0000 - R20 000</option>
+                    <option value="4">R20 000 - R50 000</option>
+                    <option value="5">R50 000 - R100 000</option>
+                    <option value="6">R100 000 - R500 000</option>
+                    <option value="7">R1 000 000 - R2 000 000</option>
+                    <option value="8">More than R2 000 000</option>
                 </select>
-                <div class="room-size-range-wrap sm-width">
-                    <div class="price-text">
-                        <label for="roomsizeRange">Size:</label>
-                        <input type="text" id="roomsizeRange" readonly>
-                    </div>
-                    <div id="roomsize-range" class="slider"></div>
-                </div>
-                <div class="price-range-wrap sm-width">
-                    <div class="price-text">
-                        <label for="priceRange">Price:</label>
-                        <input type="text" id="priceRange" readonly>
-                    </div>
-                    <div id="price-range" class="slider"></div>
-                </div>
-                <button type="button" class="search-btn sm-width">Search</button>
+                <button type="submit" class="search-btn sm-width">Search</button>
             </form>
-        </div>
-        <div class="more-option">
-            <div class="accordion" id="accordionExample">
-                <div class="card">
-                    <div class="card-heading active">
-                        <a data-toggle="collapse" data-target="#collapseOne">
-                            More Search Options
-                        </a>
-                    </div>
-                    <div id="collapseOne" class="collapse" data-parent="#accordionExample">
-                        <div class="card-body">
-                            <div class="mo-list">
-                                <div class="ml-column">
-                                    <label for="air">
-                                        Air conditioning
-                                        <input type="checkbox" id="air">
-                                        <span class="checkbox"></span>
-                                    </label>
-                                    <label for="lundry">
-                                        Laundry
-                                        <input type="checkbox" id="lundry">
-                                        <span class="checkbox"></span>
-                                    </label>
-                                    <label for="refrigerator">
-                                        Refrigerator
-                                        <input type="checkbox" id="refrigerator">
-                                        <span class="checkbox"></span>
-                                    </label>
-                                    <label for="washer">
-                                        Washer
-                                        <input type="checkbox" id="washer">
-                                        <span class="checkbox"></span>
-                                    </label>
-                                </div>
-                                <div class="ml-column">
-                                    <label for="barbeque">
-                                        Barbeque
-                                        <input type="checkbox" id="barbeque">
-                                        <span class="checkbox"></span>
-                                    </label>
-                                    <label for="lawn">
-                                        Lawn
-                                        <input type="checkbox" id="lawn">
-                                        <span class="checkbox"></span>
-                                    </label>
-                                    <label for="sauna">
-                                        Sauna
-                                        <input type="checkbox" id="sauna">
-                                        <span class="checkbox"></span>
-                                    </label>
-                                    <label for="wifi">
-                                        Wifi
-                                        <input type="checkbox" id="wifi">
-                                        <span class="checkbox"></span>
-                                    </label>
-                                </div>
-                                <div class="ml-column">
-                                    <label for="dryer">
-                                        Dryer
-                                        <input type="checkbox" id="dryer">
-                                        <span class="checkbox"></span>
-                                    </label>
-                                    <label for="microwave">
-                                        Microwave
-                                        <input type="checkbox" id="microwave">
-                                        <span class="checkbox"></span>
-                                    </label>
-                                    <label for="pool">
-                                        Swimming Pool
-                                        <input type="checkbox" id="pool">
-                                        <span class="checkbox"></span>
-                                    </label>
-                                    <label for="window">
-                                        Window Coverings
-                                        <input type="checkbox" id="window">
-                                        <span class="checkbox"></span>
-                                    </label>
-                                </div>
-                                <div class="ml-column last-column">
-                                    <label for="gym">
-                                        Gym
-                                        <input type="checkbox" id="gym">
-                                        <span class="checkbox"></span>
-                                    </label>
-                                    <label for="shower">
-                                        OutdoorShower
-                                        <input type="checkbox" id="shower">
-                                        <span class="checkbox"></span>
-                                    </label>
-                                    <label for="tv">
-                                        Tv Cable
-                                        <input type="checkbox" id="tv">
-                                        <span class="checkbox"></span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </section>
 <!-- Search Section End -->
+
+<script>
+    function getel(a) {
+        return document.getElementById(a);
+    }
+    function SearchNow(event) {
+        event.preventDefault();
+        let urlstr = "";
+        var province = getel("province").value;
+        var city = getel("city").value;
+        var subcity = getel("subcity").value;
+        var type = getel("type").value;
+        var contract = getel("contract").value;
+        var price = getel("price").value;
+
+        if (province !== "") {
+            urlstr += urlstr == "" ? "" : ",";
+            urlstr += "province=" + province;
+        }
+        if (city != "") {
+            urlstr += urlstr == "" ? "" : ",";
+            urlstr += "city=" + city;
+        }
+        if (subcity != "") {
+            urlstr += urlstr == "" ? "" : ",";
+            urlstr += "subcity=" + subcity;
+        }
+        if (type != "") {
+            urlstr += urlstr == "" ? "" : ",";
+            urlstr += "type=" + type;
+        }
+        if (contract != "") {
+            urlstr += urlstr == "" ? "" : ",";
+            urlstr += "contract=" + contract;
+        }
+        if (price != "") {
+            urlstr += urlstr == "" ? "" : ",";
+            urlstr += "price=" + price;
+        }
+        //console.log("url =" + urlstr);
+        //alert(urlstr);
+        window.location.href = "/properties/?" + urlstr;
+    }
+</script>
